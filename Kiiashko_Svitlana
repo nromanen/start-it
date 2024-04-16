@@ -1,0 +1,42 @@
+1. --Show all info about CompanyName and Address from the Customers table.
+select p.company_name, p. address
+from customers p
+order by company_name
+
+2. Show all info about CompanyName and ContactPerson from the Suppliers table
+select p. company_name, p.contact_title 
+from suppliers p
+order by company_name
+
+3.-Show all info about ProductName and UnitPrice from the Products table.
+select p.product_name, p.unit_price
+from products p
+order by product_name
+
+4. --Show all info about LastName, FirstName, BirthDate and HireDate of Employees.
+select p.last_name, p.first_name, p.birth_date, p.hire_date
+from employees p
+order by last_name 
+
+--Show all info about the employee with ID 8.
+select p.employee_id, last_name, first_name, title,title_of_courtesy, birth_date, hire_date,address, city, region, postal_code, home_phone, "extension"
+from employees p
+where employee_id = 8
+
+--Show the list of first and last names of the employees from London
+select p.first_name, last_name
+from employees p 
+where city in ('London')
+
+--Show the list of first, last names and ages of the employees whose age is greater than 55. 
+select p.first_name, last_name, birth_date 
+from employees p
+where birth_date <= '1969-01-01'
+
+--Show the list of products with the price between 10 and 50.
+
+select p.product_name, unit_price
+from products p 
+where unit_price between '10' and '50'
+order by product_id 
+
