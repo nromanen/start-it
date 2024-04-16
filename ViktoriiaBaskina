@@ -35,7 +35,7 @@ where unit_price <20
 
 select p.product_id, p.product_name, p.unit_price 
 from products p 
-where unit_price between '15' and '25'
+where unit_price between 15 and 25
 
 -- write a query to get Product list (name, unit price) of ten most expensive products. 
 
