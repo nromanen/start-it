@@ -1,6 +1,6 @@
 -- Show the list of products with the price between 10 and 50.
 
-select product_name 
+select product_name, unit_price 
 from products p 
 where unit_price between 10 and 50 
 
