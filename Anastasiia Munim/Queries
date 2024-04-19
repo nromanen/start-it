@@ -122,7 +122,8 @@ select city,
 select first_name, last_name from employees
 where birth_date = (select max (birth_date) from employees) 
 
---Show first, last names and ages of 3 eldest employees.
+--21) Show first, last names and ages of 3 eldest employees.
+
 select first_name, last_name, birth_date from employees
 order by birth_date desc 
 limit '3'
