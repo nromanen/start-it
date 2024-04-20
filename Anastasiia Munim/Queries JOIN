@@ -14,7 +14,7 @@ join Orders o on c.customer_id  = o.customer_id
 where c.Country = 'Mexico'
 or (c.Country = 'Spain' and c.City != 'Madrid')
 
---3) Show first and last names of the employees as well as the count of orders each of them have received during the year 2017.
+--???000 3) Show first and last names of the employees as well as the count of orders each of them have received during the year 2017.
 
 select e.first_name, e.last_name, count(o.order_id) as Order_Count
 from employees e
@@ -22,16 +22,16 @@ join Orders o on e.employee_id = o.employee_id
 where extract (year from order_date) ='2017'
 group by e.first_name, e.last_name
 
---??? 4) Show first and last names of the employees as well as the count of their orders shipped after required date during the year 2017.??? 
+--???000 4) Show first and last names of the employees as well as the count of their orders shipped after required date during the year 2017.??? 
 
-select e.first_name, e.last_name COUNT (o.order_id) as order_count
+select e.first_name, e.last_name, COUNT (o.order_id) as order_count
 from employees e 
 join orders o on e.employee_id = o.employee_id 
 where extract (year from shipped_date) ='2017'
 group by e.first_name, e.last_name 
 
---??? 5) Create a report showing the information about employees and orders, whenever they had orders or not. 
-   
+--???(чи все вірно) 5) Create a report showing the information about employees and orders, whenever they had orders or not. 
+
 SELECT e.employee_id ,e.first_name ,e.last_name,
     CASE 
         WHEN o.order_id  IS NULL THEN 'No' 
