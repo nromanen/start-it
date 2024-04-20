@@ -39,16 +39,13 @@ where extract (year from age(birth_date)) >'55'
 select product_name, unit_price  from products
 where unit_price between '10' and '50'
 
---9) Show the list of products which names start form ‘N’ and average price is greater than 50.???
+--9) Show the list of products which names start form ‘N’ and average price is greater than 50.
 
-select product_name, unit_price from products
-where product_name like 'N%'
-group by product_name 
-having avg(unit_price)>'50'
-
-select product_name from products p 
-where product_name like 'N%'
-and unit_price >=50
+SELECT product_name, AVG(unit_price) AS AveragePrice
+FROM Products
+WHERE product_name LIKE 'N%'
+GROUP BY product_name 
+HAVING AVG(unit_price) > 50
 
 --10) Show the total number of employees which live in the same city.
 
@@ -60,7 +57,7 @@ group by city
 select supplier_id, company_name, city  from suppliers
 where company_name like 'A%' and city ='London'
 
---11) Show the list of first, last names and ages of the employees whose age is greater than average age of all employees.
+--12) Show the list of first, last names and ages of the employees whose age is greater than average age of all employees.
 --The result should be sorted by last name.
 
 select first_name, last_name, extract(year from age(birth_date)) from employees
@@ -69,11 +66,11 @@ extract(year from age(birth_date)) > (select avg(extract(year from age(birth_dat
 order by last_name
 
 
---12) Calculate the count of customers from Mexico and contact signed as ‘Owner’.
+--13) Calculate the count of customers from Mexico and contact signed as ‘Owner’.
 select count(*) from customers
 where city ='Mexico' and contact_title ='Owner'
 
---13) Write a query to get most expense and least expensive Product list (name and unit price).
+--14) Write a query to get most expense and least expensive Product list (name and unit price).
 
 select product_name, unit_price from products
 order by unit_price desc
@@ -89,23 +86,23 @@ select product_name, unit_price from products
 order by unit_price
 limit '1'
 
---14) Write a query to get Product list (name, unit price) of above average price.
+--15) Write a query to get Product list (name, unit price) of above average price.
 
 select product_name, unit_price from products
 where unit_price > (select avg(unit_price) from products)
 
---15) Write a query to get Product list (name, unit price) of ten most expensive products.
+--16) Write a query to get Product list (name, unit price) of ten most expensive products.
 select product_name, unit_price from products
 order by unit_price  desc 
 LIMIT '10'
 
---16) For each employee that served the order (identified by EmployeeID), calculate a total Freight.
+--17) For each employee that served the order (identified by EmployeeID), calculate a total Freight.
 
 select count(freight) as total_freight, employee_id
 from orders
 group by employee_id
 
---17) Calculate the greatest, the smallest and the average age among the employees from London.
+--18) Calculate the greatest, the smallest and the average age among the employees from London.
 
 SELECT City,
     MAX(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS MaxAge,
@@ -115,7 +112,7 @@ FROM Employees
 WHERE City = 'London'
 GROUP BY City
 
---18) Calculate the greatest, the smallest and the average age of the employees for each city.
+--19) Calculate the greatest, the smallest and the average age of the employees for each city.
 
 SELECT 
     City,
@@ -126,7 +123,7 @@ FROM Employees
 GROUP BY City 
 
 
---19) Show the list of cities in which the average age of employees is greater than 60 (the average age is also to be shown)
+--20) Show the list of cities in which the average age of employees is greater than 60 (the average age is also to be shown)
 
 SELECT City, AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS AverageAge
 FROM Employees
@@ -134,12 +131,12 @@ GROUP BY City
 HAVING AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) > 60 
 
 
---20) Show the first and last name(s) of the eldest employee(s).
+--21) Show the first and last name(s) of the eldest employee(s).
 
 select first_name, last_name from employees
 where birth_date = (select max (birth_date) from employees) 
 
---21) Show first, last names and ages of 3 eldest employees.
+--22) Show first, last names and ages of 3 eldest employees.
 
 select first_name, last_name, birth_date from employees
 order by birth_date desc 
