@@ -55,3 +55,32 @@ select product_name
 , unit_price 
 from Products
 where unit_price between '10' and '50'
+
+--Practice 3--
+
+--1. Show the list of products which names start form ‘N’ and average price is greater than 50.--
+
+select p.product_name  
+, p.unit_price 
+from Products p
+where product_name like 'N%' and unit_price >'50'
+
+--2. Show the total number of employees which live in the same city.--
+
+select city 
+, count (employee_id) as quantity
+from Employees
+group by city
+
+--3.Show the list of suppliers which name begins with letter ‘A’  and are situated in London.--
+
+select company_name 
+from Suppliers
+where company_name like 'A%' and city  in ('London')
+
+--4. Show the list of first, last names and ages of the employees whose age is greater than average age of all employees. The result should be sorted by last name.--
+
+select first_name, last_name, EXTRACT (year FROM age(birth_date))
+from employees 
+where EXTRACT (year FROM age(birth_date)) > (select avg(EXTRACT (year FROM age(birth_date)))from employees)
+ORDER by last_name
