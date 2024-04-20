@@ -84,3 +84,9 @@ select first_name, last_name, EXTRACT (year FROM age(birth_date))
 from employees 
 where EXTRACT (year FROM age(birth_date)) > (select avg(EXTRACT (year FROM age(birth_date)))from employees)
 ORDER by last_name
+
+--5.Calculate the count of customers from Mexico and contact signed as ‘Owner’.--
+
+select Count (customer_id) as quantity
+from Customers
+where country in ('Mexico') and contact_title in ('Owner')
