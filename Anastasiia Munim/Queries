@@ -105,16 +105,33 @@ select count(freight) as total_freight, employee_id
 from orders
 group by employee_id
 
---17) Calculate the greatest, the smallest and the average age among the employees from London.???
+--17) Calculate the greatest, the smallest and the average age among the employees from London.
 
---18) Calculate the greatest, the smallest and the average age of the employees for each city.???
+SELECT City,
+    MAX(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS MaxAge,
+    MIN(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS MinAge,
+    AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS AvgAge
+FROM Employees
+WHERE City = 'London'
+GROUP BY City
 
-select 
+--18) Calculate the greatest, the smallest and the average age of the employees for each city.
+
+SELECT 
+    City,
+    MAX(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS MaxAge,
+    MIN(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS MinAge,
+    AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS AvgAge
+FROM Employees
+GROUP BY City 
 
 
---19) Show the list of cities in which the average age of employees is greater than 60 (the average age is also to be shown)???
+--19) Show the list of cities in which the average age of employees is greater than 60 (the average age is also to be shown)
 
-select city, 
+SELECT City, AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) AS AverageAge
+FROM Employees
+GROUP BY City
+HAVING AVG(EXTRACT(YEAR FROM NOW()) - EXTRACT(YEAR FROM birth_date)) > 60 
 
 
 --20) Show the first and last name(s) of the eldest employee(s).
