@@ -258,3 +258,11 @@ where units_in_stock >'0'
 select count (product_id) as discontinued_products
 from Products
 where discontinued='1'
+
+--10. Write a query to get Product list (name, units on order , units in stock) of stock is less than the quantity on order. --
+
+select product_name 
+, units_on_order
+, units_in_stock
+from Products
+where units_in_stock < units_on_order
