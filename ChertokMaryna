@@ -160,13 +160,11 @@ having  avg (EXTRACT (year FROM age(birth_date))) >60
 order by average_age
 
 --4. Show the first and last name(s) of the eldest employee(s).--
---?????--
 
 select first_name
 , last_name
 from Employees
-order by EXTRACT (year FROM age(birth_date)) desc
-limit 1
+where EXTRACT (year FROM age(birth_date))=(select max(EXTRACT (year FROM age(birth_date)))from Employees)
 
 --5.Show first, last names and ages of 3 eldest employees.--
 
