@@ -1,5 +1,27 @@
 --PRACTICE 3--
 
+-- Calculate the count of customers from Mexico and contact signed as ‘Owner’.
+
+select count(customer_id) as number
+from customers c
+where c.city like 'Mexico' and contact_title like 'Owner'
+
+
+-- Show the list of first, last names and ages of the employees whose age is greater than average age of all employees.The result should be sorted by last name.
+
+select first_name, last_name, extract (year from age(e.birth_date))
+from employees e
+where extract(year from age(e.birth_date)) > (select avg(extract(year from age(birth_date))) from employees)
+order by last_name 
+
+
+-- Show the total number of employees which live in the same city.
+
+select city, count(employee_id) as number
+from employees e
+group by city
+
+
 -- Show the list of products which names start form ‘N’ and average price is greater than 50.
 
 select product_name, unit_price 
