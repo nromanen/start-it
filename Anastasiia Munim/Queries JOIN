@@ -32,6 +32,16 @@ group by e.first_name, e.last_name
 
 --???(чи все вірно) 5) Create a report showing the information about employees and orders, whenever they had orders or not. 
 
+ select e.employee_id,
+    e.first_name,
+    e.last_name,
+    o.order_id,
+    o.order_date,
+    o.shipped_date
+from employees e
+left join orders o on e.employee_id = o.employee_id
+
+
 SELECT e.employee_id ,e.first_name ,e.last_name,
     CASE 
         WHEN o.order_id  IS NULL THEN 'No' 
