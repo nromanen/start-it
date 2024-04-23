@@ -1,3 +1,29 @@
+--PRACTICE 3--
+
+-- Show the list of products which names start form ‘N’ and average price is greater than 50.
+
+select product_name, unit_price 
+from products p
+where product_name like 'N%' and unit_price > 50
+
+
+-- Show the list of suppliers which name begins with letter ‘A’  and are situated in London.
+
+select company_name 
+from suppliers s
+where company_name like 'A%' and city like 'London'
+
+
+--PRACTICE 2--
+
+-- Show the list of first, last names and ages of the employees whose age is greater than 55.
+
+select first_name, last_name, extract (year FROM age(e. birth_date))
+from employees e
+
+where extract (year FROM age(e. birth_date)) > 55
+
+
 -- Show the list of products with the price between 10 and 50.
 
 select product_name, unit_price 
@@ -18,6 +44,7 @@ select *
 from employees e 
 where employee_id = 8
 
+-- PRACTICE 1--
 
 -- Show all info about LastName, FirstName, BirthDate and HireDate of Employees.
 
@@ -35,3 +62,9 @@ from suppliers s
 
 select company_name, address
 from customers c 
+
+
+-- Show all info about ProductName and UnitPrice from the Products table.
+
+select product_name, unit_price  
+from products p
