@@ -170,5 +170,11 @@ group by discontinued
 select product_name, units_on_order, units_in_stock from products p
 where units_in_stock < units_on_order
 
+--Show the list of cities in which the average age 
+--of employees is greater than 60 (the average age is also to be shown)
+select city, extract (year from avg(age(birth_date)))
+from employees e 
+group by city
+having extract (year from avg(age(birth_date))) > 60
 
 
