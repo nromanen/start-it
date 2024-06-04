@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "c633b044-d365-4e67-b7ff-8ac1477624de",
+		"name": "Greencity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32889910"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"token\", \"Bearer \"+pm.response.json().accessToken);",
+							"pm.collectionVariables.set(\"id\",pm.response.json().userId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"dojaj42793@comsb.com\",\"password\":\"\\\"p2k4M9]hdqYRD%\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+					"protocol": "https",
+					"host": [
+						"greencity-user",
+						"greencity",
+						"social"
+					],
+					"path": [
+						"ownSecurity",
+						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://greencity-user.greencity.social/user/profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"User successfully updated\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"coordinates\":{\"longitude\":30.5245025,\"latitude\":50.4503596},\n\"name\":\"{{user_name}}\",\n\"userCredo\":\"{{credo}}\",\n\"showLocation\":true,\"showEcoPlace\":true,\"showShoppingList\":true,\"socialNetworks\":[]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://greencity-user.greencity.social/user/profile",
+					"protocol": "https",
+					"host": [
+						"greencity-user",
+						"greencity",
+						"social"
+					],
+					"path": [
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://greencity-user.greencity.social/user/1624/profile/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"user_name\"));",
+							"});",
+							"",
+							"pm.test(\"Credo\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.userCredo).to.eql(pm.collectionVariables.get(\"credo\"));",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "https://greencity-user.greencity.social/user/{{id}}/profile/",
+					"protocol": "https",
+					"host": [
+						"greencity-user",
+						"greencity",
+						"social"
+					],
+					"path": [
+						"user",
+						"{{id}}",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user_name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "credo",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
