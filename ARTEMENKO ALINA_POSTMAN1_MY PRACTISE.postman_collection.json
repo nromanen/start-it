@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "8beb9d69-b520-44c2-a518-474c66015345",
+		"name": "MY PRACTISE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35194323"
+	},
+	"item": [
+		{
+			"name": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/user/124",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"firstName for user with id 124 should be equals `Alina` \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstName).to.eql('Alina');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/user/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"user",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/signin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"artemenko.alina26@gmail.com\",\"password\":\"test29052024A@\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/signin",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"token\", \"Bearer \" + pm.response.json().accessToken);",
+							"pm.collectionVariables.set(\"user_id\",pm.response.json().id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnRlbWVua28uYWxpbmEyNkBnbWFpbC5jb20iLCJleHAiOjE3MTcxMDQ1MzN9.eCQsjgFkr_rHf0BA9RjzQdLrrKGprwYDA0qpuNhut-EOutVoPKNdjdQ_cs2WaylwNfjn0LMbUaPNezvOCXqjIQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"artemenko.alina26@gmail.com\",\"password\":\"test29052024A@\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/signin",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "negative first name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"firstName can`t contain space symbol\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).include(\"firstName\");\r",
+							"    pm.expect(jsonData.message).include(\"only ukrainian and english letters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"{{user_name_with_space}}\",\r\n    \"lastName\": \"Artemenk o\",\r\n    \"phone\": \"0668357304\",\r\n    \"email\": \"artemenko.alina26@gmail.com\",\r\n    \"roleName\": \"ROLE_USER\",\r\n    \"urlLogo\": null,\r\n    \"status\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/user/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"user",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "negative last name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"lastName can`t contain space symbol\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).include(\"lastName\");\r",
+							"    pm.expect(jsonData.message).include(\"only ukrainian and english letters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Name\",\r\n    \"lastName\": \"{{name_with_space}}\",\r\n    \"phone\": \"0668357304\",\r\n    \"email\": \"artemenko.alina26@gmail.com\",\r\n    \"roleName\": \"ROLE_USER\",\r\n    \"urlLogo\": null,\r\n    \"status\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/user/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"user",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "negative phone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"phone must contain only 10 digits\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).include(\"phone\");\r",
+							"    pm.expect(jsonData.message).include(\"only digits\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Alina\",\r\n    \"lastName\": \"Artemenko\",\r\n    \"phone\": \"05589624789632\",\r\n    \"email\": \"artemenko.alina26@gmail.com\",\r\n    \"roleName\": \"ROLE_USER\",\r\n    \"urlLogo\": null,\r\n    \"status\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://speak-ukrainian.eastus2.cloudapp.azure.com/dev/api/user/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"speak-ukrainian",
+						"eastus2",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"user",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token1",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "user_name_with_space",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
