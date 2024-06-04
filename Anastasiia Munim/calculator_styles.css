@@ -1,1 +1,32 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background-color: #FFEBC2;
+}
+
+.calculator-section {
+  margin-bottom: 20px;
+}
+
+.calculator-section h2 {
+  margin-bottom: 10px;
+}
+
+.calculator-section input,
+.calculator-section select,
+.calculator-section button,
+.calculator-section p {
+  display: block;
+  margin: 5px 0px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.calculator-section button {
+  width: auto;
+  padding: 5px 10px;
+  background-color: #47BEEE;
+  
+}
+
 
