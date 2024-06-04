@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Calculator</h1>
+
+    <!-- Addition Section -->
+    <div class="calculator-section">
+      <h2>Addition</h2>
+      <input id="a" type="number" placeholder="Number 1">
+      <input id="b" type="number" placeholder="Number 2">
+      <input id="sum" type="number" placeholder="Result">
+      <button id="addBtn">Add</button>
+      <p id="addResult"></p>
+    </div>
+
+    <!-- Subtraction Section -->
+    <div class="calculator-section">
+      <h2>Subtraction</h2>
+      <input id="a1" type="number" placeholder="Number 1">
+      <input id="b1" type="number" placeholder="Number 2">
+      <input id="sum1" type="number" placeholder="Result">
+      <button id="subBtn">Subtract</button>
+      <p id="subResult"></p>
+    </div>
+
+    <!-- Multiplication Section -->
+    <div class="calculator-section">
+      <h2>Multiplication</h2>
+      <input id="a2" type="number" placeholder="Number 1">
+      <input id="b2" type="number" placeholder="Number 2">
+      <input id="sum2" type="number" placeholder="Result">
+      <button id="mulBtn">Multiply</button>
+      <p id="mulResult"></p>
+    </div>
+
+    <!-- Combined Section -->
+    <div class="calculator-section">
+      <h2>Combined</h2>
+      <input id="a3" type="number" placeholder="Number 1">
+      <input id="b3" type="number" placeholder="Number 2">
+      <select id="operation">
+        <option value="add">Add</option>
+        <option value="subtract">Subtract</option>
+        <option value="multiply">Multiply</option>
+      </select>
+      <input id="result" type="number" placeholder="Result">
+      <button id="calculateBtn">Calculate</button>
+      <p id="calcResult"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
 
