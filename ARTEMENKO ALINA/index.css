@@ -1,0 +1,71 @@
+/* Universal box-sizing reset */
+* {
+    box-sizing: border-box;
+}
+
+/* Ensure the body takes up the full height of the viewport */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Ensure the content section flexes to take available space */
+.tabcontent {
+    flex: 1;
+    color: white;
+    display: none; /* Hide by default */
+    padding: 100px 20px;
+}
+
+/* Style tab links */
+.tablink {
+    background-color: #FFFFFF; /* Default background color */
+    color: black;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 33.3%;
+}
+
+.tablink:hover {
+    background-color: #ffffcc;
+}
+
+/* Active tab link */
+.tablink.active {
+    background-color: #ffffcc; /* Color when active */
+}
+
+/* Specific tab content backgrounds */
+#About {
+    background-color: green;
+}
+#Work {
+    background-color: teal;
+}
+#Contact {
+    background-color: indigo;
+}
+
+/* Additional styles */
+ul {
+    list-style-type: none;
+}
+
+button {
+    margin: 5px 0;
+}
+
+/* Style the footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1; /* Optional: Add background color for better visibility */
+    width: 100%;
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+}
